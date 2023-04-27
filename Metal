@@ -1,0 +1,44 @@
+public abstract class Metal {
+    public abstract int getEndurance();
+}
+
+class Steel extends Metal {
+    @Override
+    public int getEndurance() {
+        return 50;
+    }
+}
+
+class Copper extends Metal {
+    @Override
+    public int getEndurance() {
+        return 20;
+    }
+}
+
+class Iron extends Metal {
+    @Override
+    public int getEndurance() {
+        return 30;
+    }
+}
+class Plastic {}
+
+class Sword<T> {
+    private T material;
+
+    public Sword(T mat) throws IllegalAccessException {
+        if (mat instanceof Plastic) {
+            throw new IllegalAccessException("Материал не может быть пластиком");
+        }
+        this.material = mat;
+    }
+
+    public boolean checkStrength() {
+        if (this.material instanceof Metal) {
+            return ((Metal) this.material).getEndurance() > 49;
+        } else {
+            throw new UnsupportedOperationException("Материал не является металлом");
+        }
+    }
+}
